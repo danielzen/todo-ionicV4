@@ -8,6 +8,8 @@
 
 <ion-content>
   <ion-list *ngFor="let item of items">
-    <ion-item>{{item.title}}</ion-item>
+    <ion-item [class.taskDone]="item.done" (click)="item.done = !item.done">
+      {{item.title}}
+    </ion-item>
   </ion-list>
 </ion-content>

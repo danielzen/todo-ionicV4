@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 export class HomePage {
   items: Array<any> = [];
 
-  constructor() {
+  constructor(private alertController: AlertController) {
     this.items = [
       {title: 'Data Drive the App', done: true},
       {title: 'Toggle Items', done: true},
@@ -16,6 +17,26 @@ export class HomePage {
       {title: 'Delete Items', done: false},
       {title: 'Edit Items', done: false},
     ];
+  }
+
+  async addItem() {
+    const alert = await this.alertController.create({
+      header: 'Add Task',
+      inputs: [{name: 'task', placeholder: 'New Task'}],
+      buttons: [{text: 'Cancel', role: 'cancel'},
+        {
+          text: 'Create',
+          handler: data => {
+            if (data.task !== '') {
+              this.items.push({title: data.task, status: 'open'});
+              // this.presentToast('added');
+            }
+            return data.task;
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
 }

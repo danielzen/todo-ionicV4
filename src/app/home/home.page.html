@@ -7,9 +7,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let item of items">
+  <ion-list>
+    <ion-item-sliding #slidingItem *ngFor="let item of items">
     <ion-item [class.taskDone]="item.done" (click)="item.done = !item.done">
       {{item.title}}
     </ion-item>
+    <ion-item-options side="end">
+
+    </ion-item-options>
   </ion-list>
 </ion-content>

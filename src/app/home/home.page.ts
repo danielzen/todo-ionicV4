@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonItemSliding } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +28,28 @@ export class HomePage {
           text: 'Create',
           handler: data => {
             if (data.task !== '') {
-              this.items.push({title: data.task, status: 'open'});
-              // this.presentToast('added');
+              this.items.push({title: data.task, done: false});
             }
+            return data.task;
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async editItem(item: any, slidingItem: IonItemSliding) {
+    const alert = await this.alertController.create({
+      header: 'Edit Task',
+      inputs: [{name: 'task', placeholder: 'Edited Task', value: item.title}],
+      buttons: [{text: 'Cancel', role: 'cancel'},
+        {
+          text: 'Edit',
+          handler: data => {
+            if (data.task !== '') {
+              item.title = data.task;
+            }
+            slidingItem.close();
             return data.task;
           }
         }

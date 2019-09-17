@@ -10,7 +10,8 @@ export class HomePage {
 
   constructor() {
     this.items = [
-      {title: 'Data Drive the App', done: false},
+      {title: 'Data Drive the App', done: true},
+      {title: 'Toggle Items', done: false},
       {title: 'Create New Items', done: false},
       {title: 'Delete Items', done: false},
       {title: 'Edit Items', done: false},

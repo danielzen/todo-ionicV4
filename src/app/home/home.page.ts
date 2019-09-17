@@ -6,7 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  items: Array<any> = [];
 
-  constructor() {}
+  constructor() {
+    this.items = [
+      {title: 'Data Drive the App', done: false},
+      {title: 'Create New Items', done: false},
+      {title: 'Delete Items', done: false},
+      {title: 'Edit Items', done: false},
+    ];
+  }
 
 }
